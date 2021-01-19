@@ -7,7 +7,7 @@ DELETE the "typo3-check.php" file if you are done!
 - added hints section
 - added links section
 
-# Original: ns_typo3_compatibility
+# Original: [ns_typo3_compatibility](https://github.com/nitsan-technologies/ns_typo3_compatibility)
 This repository contains one PHP file. Where a  user can select the TYPO3 version and check the server compatibility with the selected TYPO3 version.
 
 It includes following funtionalities.
