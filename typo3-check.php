@@ -233,10 +233,10 @@ Contact: info@nitsan.in
 </head>
 <?php
 /**
- * Name: get_current_mysql_version
- * Parameters: NULL
- * Return: String
- * Desc: It return the current Installed MySQL version.
+ * get_current_mysql_version
+ * It return the current Installed MySQL version.
+ *
+ * @return string
  */
 function get_current_mysql_version(){
     $output = shell_exec( 'mysql -V' );
@@ -245,32 +245,35 @@ function get_current_mysql_version(){
 }
 
 /**
- * Name: check_email
- * Parameters: text
- * Return: Boolean
- * Desc: Check whether server can send Email or not.
+ * check_email
+ * Check whether server can send Email or not.
+ *
+ * @param [string] $toEmailAddress
+ * @return bool
  */
 function check_email( $toEmailAddress ) {
     $emailSubject = 'NS Test Server Email';
     $emailText = 'Hello, Yes the E-mail is working properly on this server. Enjoy!!!';
-    return mail ($toEmailAddress, $emailSubject, $emailText);
+    return mail($toEmailAddress, $emailSubject, $emailText);
 }
 
 /**
- * Name: show_message
- * Parameters: message, message type (alert-success, alert-danger, alert-info, alert-warning)
- * Return: string
- * Desc: Show Bootstrap different messages.
+ * show_message
+ * Show Bootstrap different messages.
+ *
+ * @param [string] $msg
+ * @param [string] $msgType
+ * @return string
  */
 function show_message ( $msg, $msgType ) {
     return "<div class='alert ".$msgType."'>".$msg.'</div>';
 }
 
 /**
- * Name: get_typo3_version_config
- * Parameters: null
- * Return: array
- * Desc: get all predefined array with parameters
+ * get_typo3_version_config
+ * get all predefined array with parameters
+ *
+ * @return array
  */
 function get_typo3_version_config () {
     return [
