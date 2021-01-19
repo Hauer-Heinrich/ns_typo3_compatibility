@@ -278,34 +278,50 @@ function show_message ( $msg, $msgType ) {
 function get_typo3_version_config () {
     return [
         '9' => [
-            'php_min' => '7.2',
-            'php_max' => '0',
-            'sql_min' => '5.0',
-            'sql_max' => '5.7.20',
-            'ImageMagick' => '6',
-            'gd' => '-',
-            'mbstring' => '-',
-            'max_execution_time' => '240',
-            'memory_limit' => '128M',
-            'max_input_vars' => '1500',
-            'upload_max_filesize' => '100M',
-            'post_max_size' => '100M',
-            'GraphicsMagick' => '1.3',
+            'links' => [
+                'officialdoc' => [
+                    'linktext' => 'Official requirements',
+                    'link' => 'https://docs.typo3.org/m/typo3/guide-installation/9.5/en-us/In-depth/SystemRequirements/Index.html'
+                ],
+            ],
+            'requirements' => [
+                'php_min' => '7.2',
+                'php_max' => '0',
+                'sql_min' => '5.0',
+                'sql_max' => '5.7.20',
+                'ImageMagick' => '6',
+                'gd' => '-',
+                'mbstring' => '-',
+                'max_execution_time' => '240',
+                'memory_limit' => '128M',
+                'max_input_vars' => '1500',
+                'upload_max_filesize' => '100M',
+                'post_max_size' => '100M',
+                'GraphicsMagick' => '1.3',
+            ]
         ],
         '10' => [
-            'php_min' => '7.2',
-            'php_max' => '0',
-            'sql_min' => '5.7',
-            'sql_max' => '8.1',
-            'ImageMagick' => '6',
-            'gd' => '-',
-            'mbstring' => '-',
-            'max_execution_time' => '240',
-            'memory_limit' => '256M',
-            'max_input_vars' => '1500',
-            'upload_max_filesize' => '100M',
-            'post_max_size' => '100M',
-            'GraphicsMagick' => '1.3',
+            'links' => [
+                'officialdoc' => [
+                    'linktext' => 'Official requirements',
+                    'link' => 'https://docs.typo3.org/m/typo3/guide-installation/10.4/en-us/In-depth/SystemRequirements/Index.html'
+                ],
+            ],
+            'requirements' => [
+                'php_min' => '7.2',
+                'php_max' => '0',
+                'sql_min' => '5.7',
+                'sql_max' => '8.1',
+                'ImageMagick' => '6',
+                'gd' => '-',
+                'mbstring' => '-',
+                'max_execution_time' => '240',
+                'memory_limit' => '256M',
+                'max_input_vars' => '1500',
+                'upload_max_filesize' => '100M',
+                'post_max_size' => '100M',
+                'GraphicsMagick' => '1.3',
+            ]
         ],
     ];
 }
@@ -352,7 +368,7 @@ function get_typo3_version_config () {
                         $VersionInfo = get_typo3_version_config();
                         if( isset( $_GET['version']) ) {
                             $value = $VersionInfo[$selected_val];
-                            foreach ($value as $module => $module_value) {
+                            foreach ($value['requirements'] as $module => $module_value) {
                                 if( $module_value == '-' ) {
                                     if( $module == 'ImageMagick' ) {
                                         exec('convert -version', $output);
@@ -455,6 +471,26 @@ function get_typo3_version_config () {
                     ?>
                     </tbody>
                 </table>
+                <div class="hints">
+                    <p>Hint:</p>
+                    <ul>
+                        <li>ImageMagick OR GraphicsMagick is requird.</li>
+                        <li>Upload Max Filesize and Post Max Size depends on your needs.</li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                    <?php
+                        if( isset( $_GET['version']) ) {
+                            $value = $VersionInfo[$selected_val];
+                            foreach ($value['links'] as $link) {
+                                var_dump($link);
+                                echo '<li><a href="'.$link_value.'">'.$link.'</a></li>';
+                            }
+                        }
+                    ?>
+                    </ul>
+                </div>
                 <?php
             }
             ?>
