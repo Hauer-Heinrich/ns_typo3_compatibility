@@ -1,4 +1,9 @@
-<!--
+<!-- Changed by:
+Developer: Werbeagentur Hauer-Heinrich GmbH
+Contact: web@hauer-heinrich.de
+-->
+
+<!-- Original by:
 Name: TYPO3 Check Server Compatibility
 Desc: You can check the current server configuration and compatibility for the seletec TYPO3 version. Also, You can check the Database connection and Check if the server can send the Email or not.
 Developer: NITSAN Technologies Pvt. Ltd.
@@ -308,7 +313,7 @@ function get_typo3_version_config () {
             <h1>Check Server Configuration</h1>
         </div>
         <div class="form-wrapper">
-            <form action="TYPO3_Check_Configuration.php" method="get">
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get">
                 <label>Select TYPO3 Version:</label>
                 <select name="version" id="typo3-version" required onchange="this.form.submit()">
                     <option value="">Select</option>
@@ -472,7 +477,7 @@ function get_typo3_version_config () {
                 echo $DBConnectionMsg = ($con) ? show_message('Database Connection is successful', 'alert-success') : show_message( "Error: Connection can not be done. Please check your credentials again", "alert-danger");
             }
             ?>
-            <form action="TYPO3_Check_Configuration.php" method="post" name="form_DB_connection">
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="form_DB_connection">
                 <div class="row">
                     <div class="col-12">
                         <label>Database Connection details:</label>
@@ -525,7 +530,7 @@ function get_typo3_version_config () {
                 }
             }
             ?>
-            <form action="TYPO3_Check_Configuration.php" method="post" name="check_email">
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="check_email">
                 <label>Check Email:</label>
                 <div class="row">
                     <div class="form-element col-6">
@@ -573,7 +578,7 @@ function get_typo3_version_config () {
         <!-- Starging of php info -->
         <hr />
         <div class="form-wrapper">
-            <form action="TYPO3_Check_Configuration.php" method="get" name="check_email">
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" name="check_email">
                 <label>Show full server configurations:</label>
                 <input name="phpinfo" value="PHP Info" type="submit">
             </form>
