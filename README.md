@@ -3,7 +3,7 @@ DELETE the "typo3-check.php" file if you are done!
 
 # Changes
 - change detection of ImageMagick
-- use SMTP instead of php mail() function
+- use SMTP instead of php mail() function ([php-smtp](https://github.com/snipworks/php-smtp))
 - added hints section
 - added links section
 
