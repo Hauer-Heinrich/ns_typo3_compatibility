@@ -81,6 +81,9 @@ Contact: info@nitsan.in
             margin: 0 0 13px;
             width: 100%;
         }
+        form > label {
+            font-weight: bold;
+        }
         .inline-label {
             float: left;
             margin: 8px 20px 8px 0;
@@ -472,20 +475,20 @@ function get_typo3_version_config () {
                     </tbody>
                 </table>
                 <div class="hints">
-                    <p>Hint:</p>
+                    <p>Hints:</p>
                     <ul>
                         <li>ImageMagick OR GraphicsMagick is requird.</li>
                         <li>Upload Max Filesize and Post Max Size depends on your needs.</li>
                     </ul>
                 </div>
                 <div class="links">
+                    <p>Links:</p>
                     <ul>
                     <?php
                         if( isset( $_GET['version']) ) {
                             $value = $VersionInfo[$selected_val];
                             foreach ($value['links'] as $link) {
-                                var_dump($link);
-                                echo '<li><a href="'.$link_value.'">'.$link.'</a></li>';
+                                echo '<li><a href="'.$link['link'].'">'.$link['linktext'].'</a></li>';
                             }
                         }
                     ?>
@@ -517,10 +520,8 @@ function get_typo3_version_config () {
             }
             ?>
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="form_DB_connection">
+                <label>Database Connection details:</label>
                 <div class="row">
-                    <div class="col-12">
-                        <label>Database Connection details:</label>
-                    </div>
                     <div class="col-2">
                         <input type="text" name="host" placeholder="Host" value="<?php echo $host = (isset($_POST['host'])) ? $_POST['host'] : '';?>"  />
                     </div>
@@ -628,6 +629,20 @@ function get_typo3_version_config () {
             ?>
         </div>
         <!-- Ending of php info -->
+
+        <!-- Delete this file -->
+        <hr />
+        <div class="form-wrapper">
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" name="delete_this">
+                <input name="phpinfo" value="Delete this file!" type="submit">
+            </form>
+            <?php
+                if ( isset( $_GET['delete_this'] ) ) {
+                    unlink($_SERVER['PHP_SELF']);
+                }
+            ?>
+        </div>
+        <!-- Delete this file -->
     </div>
 </body>
 </html>
